@@ -15,7 +15,6 @@
             flex-direction: column;
             align-items: center;
         }
-        /* Butik Kafe Görsel Atmosferi (Hero Banner) */
         .hero-banner {
             width: 100%;
             height: 400px;
@@ -41,13 +40,11 @@
             font-style: italic;
             text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
         }
-
         .container {
             max-width: 1000px;
             width: 90%;
             margin: 40px 0;
         }
-
         h2.section-title {
             text-align: center;
             font-size: 2.2rem;
@@ -58,8 +55,6 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-
-        /* Menü Grid Yapısı */
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -73,13 +68,9 @@
             padding: 25px;
             text-align: center;
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-        }
-        .menu-card:hover {
-            transform: translateY(-5px);
         }
         .emoji-icon {
             font-size: 3.5rem;
@@ -92,5 +83,162 @@
             margin-bottom: 8px;
         }
         .product-desc {
-            font-size: 0.95
-    
+            font-size: 0.95rem;
+            color: #7a6355;
+            font-style: italic;
+            line-height: 1.4;
+            margin-bottom: 15px;
+        }
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+        .order-btn {
+            background-color: #5c3018;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+        .order-btn:hover {
+            background-color: #7a4325;
+        }
+        .assortment-section {
+            background: #fff8f0;
+            border: 2px dashed #d4af37;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .assortment-box {
+            font-size: 3rem;
+            letter-spacing: 15px;
+            margin: 20px 0;
+        }
+        .assortment-text {
+            font-size: 1.1rem;
+            color: #5c3018;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .cart-section {
+            background: #ffffff;
+            border: 1px solid #d4af37;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #8c7365;
+            font-size: 0.9rem;
+            border-top: 1px solid #eaddd3;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero-banner">
+        <h1>Artisan Chocolate</h1>
+        <p>Welcome to our boutique cafe & handcrafted chocolate sanctuary</p>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">Cafe Signature Menu</h2>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div>
+                    <div class="emoji-icon">🍫</div>
+                    <div class="product-name">Dark Truffle</div>
+                    <div class="product-desc">Rich dark cocoa blended with silky ganache filling.</div>
+                    <div class="product-price">$6.00</div>
+                </div>
+                <button class="order-btn" onclick="addToOrder('Dark Truffle', 6)">Add to Table</button>
+            </div>
+
+            <div class="menu-card">
+                <div>
+                    <div class="emoji-icon">🍬</div>
+                    <div class="product-name">White Raspberry</div>
+                    <div class="product-desc">Sweet white chocolate infused with fresh raspberry notes.</div>
+                    <div class="product-price">$5.50</div>
+                </div>
+                <button class="order-btn" onclick="addToOrder('White Raspberry', 5.5)">Add to Table</button>
+            </div>
+
+            <div class="menu-card">
+                <div>
+                    <div class="emoji-icon">🍮</div>
+                    <div class="product-name">Caramel Praline</div>
+                    <div class="product-desc">Crispy outer shell filled with smooth salted caramel.</div>
+                    <div class="product-price">$6.50</div>
+                </div>
+                <button class="order-btn" onclick="addToOrder('Caramel Praline', 6.5)">Add to Table</button>
+            </div>
+
+            <div class="menu-card">
+                <div>
+                    <div class="emoji-icon">🧁</div>
+                    <div class="product-name">Ruby Pistachio</div>
+                    <div class="product-desc">Natural ruby chocolate paired with roasted pistachio crunch.</div>
+                    <div class="product-price">$7.00</div>
+                </div>
+                <button class="order-btn" onclick="addToOrder('Ruby Pistachio', 7)">Add to Table</button>
+            </div>
+        </div>
+
+        <div class="cart-section">
+            <h3 style="margin-top:0; color:#5c3018;">Table Selection & Order Summary</h3>
+            <p id="order-status" style="font-style: italic; color: #7a6355;">No items added to your table yet.</p>
+            <div id="total-price" style="font-weight: bold; color: #5c3018; font-size: 1.1rem; margin-top: 10px;"></div>
+        </div>
+
+        <div class="assortment-section">
+            <h2 style="margin-top:0; color:#5c3018; font-size:1.8rem;">Masterpiece Assortment Box</h2>
+            <div class="assortment-box">🍫🍬🍮🧁✨</div>
+            <p class="assortment-text">
+                Featuring our finest collection of all signature chocolates in one exquisite presentation. 
+                Perfect to share at your table in our warm boutique cafe or order as a special gift box.
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 Artisan Chocolate Boutique Cafe. All rights reserved.
+    </footer>
+
+    <script>
+        let orderItems = [];
+        let totalPrice = 0;
+
+        function addToOrder(productName, price) {
+            orderItems.push(productName);
+            totalPrice += price;
+            updateOrderDisplay();
+        }
+
+        function updateOrderDisplay() {
+            const statusEl = document.getElementById('order-status');
+            const totalEl = document.getElementById('total-price');
+            
+            if (orderItems.length === 0) {
+                statusEl.innerText = "No items added to your table yet.";
+                totalEl.innerText = "";
+            } else {
+                statusEl.innerText = "Selected Items: " + orderItems.join(", ");
+                totalEl.innerText = "Total: $" + totalPrice.toFixed(2);
+            }
+        }
+    </script>
+
+</body>
+</html>
