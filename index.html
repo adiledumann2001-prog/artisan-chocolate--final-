@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Artisan Chocolate</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #fcf6eb; /* Açık mermer rengi arka plan */
+            font-family: 'Georgia', serif;
+            color: #3b1f13; /* Koyu çikolata rengi yazı */
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            text-align: center;
+        }
+        .header {
+            background-color: #4a2511;
+            color: #d4af37; /* Altın sarısı detaylar */
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        .score-board {
+            font-size: 20px;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        .game-area {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .customer-area {
+            background-color: #fff;
+            border: 2px solid #800020; /* Bordo (Burgundy) çerçeve */
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            width: 80%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .customer-icon {
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
+        .order-text {
+            font-size: 22px;
+            font-weight: bold;
+            color: #800020;
+        }
+        .chocolates-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            width: 100%;
+            max-width: 350px;
+        }
+        .chocolate-btn {
+            background-color: #fff;
+            border: 2px solid #d4af37;
+            border-radius: 10px;
+            padding: 15px 5px;
+            font-size: 16px;
+            font-family: 'Georgia', serif;
+            color: #3b1f13;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.1s;
+        }
+        .chocolate-btn:active {
+            transform: scale(0.95);
+            background-color: #f0e6d2;
+        }
+        .btn-icon {
+            font-size: 30px;
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        Artisan Chocolate
+    </div>
+
+    <div class="score-board">
+        Score: <span id="scoreDisplay">0</span>
+    </div>
+
+    <div class="game-area">
+        <div class="customer-area">
+            <div class="customer-icon" id="customerDisplay">👩‍💼</div>
+            <div>Current Order:</div>
+            <div class="order-text" id="orderDisplay">Loading...</div>
+        </div>
+
+        <div class="chocolates-grid">
+            <button class="chocolate-btn" onclick="checkOrder('Dark Truffle')">
+                <span class="btn-icon">🍫</span>Dark Truffle
+            </button>
+            <button class="chocolate-btn" onclick="checkOrder('White Raspberry')">
+                <span class="btn-icon">🍬</span>White Raspberry
+            </button>
+            <button class="chocolate-btn" onclick="checkOrder('Caramel Praline')">
+                <span class="btn-icon">🍮</span>Caramel Praline
+            </button>
+            <button class="chocolate-btn" onclick="checkOrder('Ruby Pistachio')">
+                <span class="btn-icon">🧁</span>Ruby Pistachio
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Sınav Kriteri: Diversity of meals (4 çeşit)
+        const menu = ["Dark Truffle", "White Raspberry", "Caramel Praline", "Ruby Pistachio"];
+        const customers = ["👩‍💼", "👨‍🎨", "🎩", "👵"];
+        
+        let currentOrder = "";
+        let score = 0;
+
+        function generateNewOrder() {
+            // Rastgele bir müşteri ve rastgele bir sipariş seç
+            const randomMeal = menu[Math.floor(Math.random() * menu.length)];
+            const randomCustomer = customers[Math.floor(Math.random() * customers.length)];
+            
+            currentOrder = randomMeal;
+            document.getElementById("orderDisplay").innerText = currentOrder;
+            document.getElementById("customerDisplay").innerText = randomCustomer;
+        }
+
+        function checkOrder(selectedChocolate) {
+            // Sınav Kriteri: Points Management (+10 doğru, -5 yanlış)
+            if (selectedChocolate === currentOrder) {
+                score += 10;
+                // Görsel geri bildirim için arka planı kısa süreliğine yeşil yap
+                document.body.style.backgroundColor = "#d4edda";
+            } else {
+                score -= 5;
+                // Görsel geri bildirim için arka planı kısa süreliğine kırmızı yap
+                document.body.style.backgroundColor = "#f8d7da";
+            }
+            
+            // Skoru güncelle
+            document.getElementById("scoreDisplay").innerText = score;
+            
+            // Arka planı 300ms sonra orijinal rengine döndür
+            setTimeout(() => {
+                document.body.style.backgroundColor = "#fcf6eb";
+            }, 300);
+
+            // Yeni siparişe geç
+            generateNewOrder();
+        }
+
+        // Oyunu başlat
+        generateNewOrder();
+    </script>
+</body>
+</html>
